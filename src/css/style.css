@@ -44,6 +44,19 @@ input {
   color: inherit;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 .container {
   min-width: 320px;
   max-width: 428px;
@@ -76,10 +89,6 @@ input {
   height: 80px;
   align-items: center;
   justify-content: center;
-}
-
-.input-label {
-  width: 0;
 }
 
 .input-search {
@@ -116,6 +125,7 @@ input {
   outline: transparent;
   cursor: pointer;
   fill: var(--color-text-dark);
+  transition: fill var(--animation-duration) var(--timing-function);
 }
 
 .btn-search:hover {
@@ -123,7 +133,7 @@ input {
 }
 
 .gallery {
-  margin-top: 12px;
+  margin: 12px auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   /*grid-auto-rows: 240px;*/
@@ -131,8 +141,6 @@ input {
   grid-gap: 12px;
   justify-content: center;
   padding: 0;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .gallery-item {
@@ -145,16 +153,28 @@ input {
     0 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
-/*.gallery-image:hover {
-  transform: scale(1.03);
-}*/
+button.gallery-item {
+  box-shadow:
+          0 1px 3px 0 rgba(0, 0, 0, 0.2),
+          0 1px 1px 0 rgba(0, 0, 0, 0.14),
+          0 2px 1px -1px rgba(0, 0, 0, 0.12),
+          inset 0 0 5px 2px rgba(0, 0, 0, 0.2);
+  border: none;
+  background-color: transparent;
+  font-size: 40px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  transition: color var(--animation-duration) var(--timing-function);
+}
 
-/*.gallery-image {
-  !*height: 100%;*!
-  width: 100%;
-  object-fit: cover;
-  transition: transform var(--animation-duration) var(--timing-function);
-}*/
+button.gallery-item:hover {
+  color: var(--color-accent);
+}
+
 
 .photo-card {
   display: block;
