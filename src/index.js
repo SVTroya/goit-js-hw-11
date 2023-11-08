@@ -139,7 +139,7 @@ async function onLoadMoreClicked() {
   els.btnLoadMoreEl.remove()
   page++
   await getImages()
-  gallery.refresh()
+  refreshGallery()
 }
 
 function addLoadMoreBtn() {
@@ -173,4 +173,9 @@ function smoothScroll() {
     top: cardHeight * 2,
     behavior: "smooth"
   })
+}
+
+function refreshGallery() {
+  gallery.close();
+  gallery = new SimpleLightbox(".gallery a");
 }
