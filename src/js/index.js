@@ -1,4 +1,4 @@
-import { ERR, showError } from "./notifications.js"
+import { ERR, NOTIFICATION, showError, showNotification } from "./notifications.js"
 import { formEl, galleryEl, btnScrollUpEl } from "./refs.js"
 import { initGallery, Gallery } from "./gallery.js"
 import { scrollUp } from "./scroll.js"
@@ -17,6 +17,9 @@ async function onSubmit(event) {
   }
   const gallery = new Gallery(galleryEl, inputValue.split(" ").join("+"))
   await initGallery(gallery)
+  gallery.totalImages
+    ? showNotification(NOTIFICATION.FOUND, gallery.totalImages)
+    : showError(ERR.NOT_FOUND)
   formEl.reset()
 }
 

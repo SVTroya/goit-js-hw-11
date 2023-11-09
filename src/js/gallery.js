@@ -1,13 +1,12 @@
 import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm"
 import "simplelightbox/dist/simple-lightbox.min.css"
-import { ERR, NOTIFICATION, showError, showNotification } from "./notifications.js"
+import { NOTIFICATION, showNotification } from "./notifications.js"
 import { getImagesByPage, IMG_PER_PAGE } from "./pixabay.js"
 import { smoothScroll } from "./scroll.js"
 
 export async function initGallery(gallery) {
   const requestResult = await getImagesByPage(gallery.query, gallery.numOfLoadedPage)
   if (!requestResult.totalImages) {
-    showError(ERR.NOT_FOUND)
     return
   }
   gallery.totalImages = requestResult.totalImages
@@ -119,6 +118,10 @@ export class Gallery {
 
   set totalImages(totalImages) {
     this.#totalImages = totalImages
+  }
+
+  get totalImages() {
+    return this.#totalImages
   }
 }
 
