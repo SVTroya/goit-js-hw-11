@@ -19,12 +19,12 @@ async function fetchImages(query, page) {
   return response.data
 }
 
-export async function getImagesByPage(page) {
+export async function getImagesByPage(query, page) {
   try {
     const {
       hits: foundImages,
       totalHits: totalImages
-    } = await fetchImages(this.query, page)
+    } = await fetchImages(query, page)
     return { foundImages, totalImages }
   } catch (error) {
     console.log(error)

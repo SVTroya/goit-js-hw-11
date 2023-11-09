@@ -1,10 +1,10 @@
 import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm"
 import "simplelightbox/dist/simple-lightbox.min.css"
-import { ERR, NOTIFICATION, showError, showNotification } from "./notifications"
-import { getImagesByPage, IMG_PER_PAGE } from "./pixabay"
+import { ERR, NOTIFICATION, showError, showNotification } from "./notifications.js"
+import { getImagesByPage, IMG_PER_PAGE } from "./pixabay.js"
 
 export async function initGallery(gallery) {
-  const requestResult = await getImagesByPage(gallery.numOfLoadedPage)
+  const requestResult = await getImagesByPage(gallery.query, gallery.numOfLoadedPage)
   if (!requestResult.totalImages) {
     showError(ERR.NOT_FOUND)
     return
@@ -37,7 +37,7 @@ function createMarkup(rootSelector, galleryItems) {
                                      largeImageURL: largeImg,
                                    }) =>
     `<a class="gallery-item" href="${largeImg}">
-      <img class="photo-card" src="${smallImg}" alt="${tags}"  loading="lazy" />
+      <img class="photo-card" src="${smallImg}" alt="${tags}" loading="lazy" />
       <div class="info">
         <p class="info-item">
           <b>Likes</b>
@@ -68,28 +68,27 @@ function addLoadMoreBtn(gallery) {
   btnLoadMoreEl.textContent = "Load more"
   gallery.galleryEl.append(btnLoadMoreEl)
   btnLoadMoreEl.onclick = async ({ target }) => {
-    target.remove()
     await showMore(gallery)
+    target.remove()
   }
 }
 
-/*function smoothScroll(scrollOn) {
-  console.log("scroll")
+function smoothScroll(scrollOn) {
   window.scrollBy({
     top: scrollOn,
     behavior: "smooth",
   })
-}*/
+}
 
 async function showMore(gallery) {
   gallery.nextPage()
-  const requestResult = await getImagesByPage(gallery.numOfLoadedPage)
+  const requestResult = await getImagesByPage(gallery.query,gallery.numOfLoadedPage)
   renderGallery(gallery, requestResult.foundImages)
   if (!gallery.hesMore()) {
     showNotification(NOTIFICATION.END)
   }
   gallery.refreshGallery()
-  //smoothScroll(gallery.galleryEl.firstElementChild.getBoundingClientRect().height * 2)
+  smoothScroll(gallery.galleryEl.firstElementChild.getBoundingClientRect().height * 2)
 }
 
 export class Gallery {

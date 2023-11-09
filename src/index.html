@@ -1,42 +1,47 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 <head>
-  <meta charset='UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homework 11</title>
   <link
-    href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap'
-    rel='stylesheet'
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+    rel="stylesheet"
   >
-  <link rel='stylesheet' href='./css/style.css' />
+  <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-<section id='header-section'>
-  <div class='container'>
-    <form class='search-form' id='search-form'>
-      <label class='visually-hidden' for='search'></label>
-      <input class='input-search'
-             id='search'
-             type='text'
-             name='searchQuery'
-             autocomplete='off'
-             placeholder='Search images...'
+<section id="header-section">
+  <div class="container">
+    <form class="search-form" id="search-form">
+      <label class="visually-hidden" for="search"></label>
+      <input class="input-search"
+             id="search"
+             type="text"
+             name="searchQuery"
+             autocomplete="off"
+             placeholder="Search images..."
       />
-      <button class='btn-search' type='submit'>
-        <svg width='20' height='20'>
-          <use href='./images/icons.svg#icon-search'/>
+      <button class="btn-search" type="submit">
+        <svg width="20" height="20">
+          <use href="./images/icons.svg#icon-search" />
         </svg>
       </button>
     </form>
   </div>
 </section>
 
-<section id='gallery-section'>
-  <div class='container'>
-    <div class='gallery'>
+<section id="gallery-section">
+  <div class="container">
+    <div class="gallery">
     </div>
+    <button class="btn-up">
+      <svg width="40" height="40">
+        <use href="./images/icons.svg#icon-arrow-up"/>
+      </svg>
+    </button>
   </div>
 </section>
-<script type='module' src="js/index.js"></script>
+<script type="module" src="./js/index.js"></script>
 </body>
 </html>
