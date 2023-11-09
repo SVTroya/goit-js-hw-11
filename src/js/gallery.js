@@ -106,7 +106,6 @@ export class Gallery {
     this.#numOfLoadedPage++
   }
 
-
   initLightbox() {
     this.#lightbox = new SimpleLightbox(".gallery a")
   }
