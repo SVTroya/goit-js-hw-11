@@ -2,6 +2,8 @@ import { ERR, showError } from "./notifications.js"
 import { formEl, galleryEl, btnScrollUpEl } from "./refs.js"
 import { initGallery, Gallery } from "./gallery.js"
 import { scrollUp } from "./scroll.js"
+import throttle from "lodash/throttle"
+
 
 formEl.onsubmit = onSubmit
 
@@ -22,14 +24,14 @@ function clearGallery() {
   galleryEl.innerHTML = ""
 }
 
-document.addEventListener("scroll", () => {
+document.addEventListener("scroll", throttle(() => {
   if (window.scrollY < 900) {
     btnScrollUpEl.style.transform = "scale(0)"
   }
   if (window.scrollY > 900) {
     btnScrollUpEl.style.transform = "scale(1)"
   }
-})
+}, 200))
 
 btnScrollUpEl.onclick = () => {
   scrollUp()

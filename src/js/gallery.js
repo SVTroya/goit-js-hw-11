@@ -2,6 +2,7 @@ import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm"
 import "simplelightbox/dist/simple-lightbox.min.css"
 import { ERR, NOTIFICATION, showError, showNotification } from "./notifications.js"
 import { getImagesByPage, IMG_PER_PAGE } from "./pixabay.js"
+import { smoothScroll } from "./scroll.js"
 
 export async function initGallery(gallery) {
   const requestResult = await getImagesByPage(gallery.query, gallery.numOfLoadedPage)
@@ -73,16 +74,9 @@ function addLoadMoreBtn(gallery) {
   }
 }
 
-function smoothScroll(scrollOn) {
-  window.scrollBy({
-    top: scrollOn,
-    behavior: "smooth",
-  })
-}
-
 async function showMore(gallery) {
   gallery.nextPage()
-  const requestResult = await getImagesByPage(gallery.query,gallery.numOfLoadedPage)
+  const requestResult = await getImagesByPage(gallery.query, gallery.numOfLoadedPage)
   renderGallery(gallery, requestResult.foundImages)
   if (!gallery.hesMore()) {
     showNotification(NOTIFICATION.END)
